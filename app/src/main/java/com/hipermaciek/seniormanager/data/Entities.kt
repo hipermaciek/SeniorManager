@@ -24,7 +24,7 @@ data class Medication(
     val timesPerDay: Int,
     val currentStock: Int,
     val totalQuantity: Int,
-    val startDate: String,
+    val startDate: Long,
     val barcode: String?
 )
 

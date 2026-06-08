@@ -112,9 +112,9 @@ private fun MainScreen(
         Button(onClick = { vm.addHealthEntry("senior_a", bp, pulse.toIntOrNull() ?: 0) }) { Text("Dodaj wpis") }
 
         Button(onClick = {
-            when (vm.emergencyClick()) {
-                EmergencyAction.CALL_112 -> on112Call()
-                EmergencyAction.WARNING -> onWarning(1)
+            when (val action = vm.emergencyClick()) {
+                EmergencyAction.Call112 -> on112Call()
+                is EmergencyAction.Warning -> onWarning(action.remainingClicks)
             }
         }) {
             Text("🚨 112 (3 kliknięcia <2s)")

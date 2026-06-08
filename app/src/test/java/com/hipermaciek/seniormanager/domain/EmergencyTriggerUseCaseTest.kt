@@ -8,16 +8,16 @@ class EmergencyTriggerUseCaseTest {
     fun `calls 112 on 3rd click in time window`() {
         val useCase = EmergencyTriggerUseCase(tripleWindowMs = 2_000)
 
-        assertEquals(EmergencyAction.WARNING, useCase.registerClick(1_000))
-        assertEquals(EmergencyAction.WARNING, useCase.registerClick(1_500))
-        assertEquals(EmergencyAction.CALL_112, useCase.registerClick(2_000))
+        assertEquals(EmergencyAction.Warning(2), useCase.registerClick(1_000))
+        assertEquals(EmergencyAction.Warning(1), useCase.registerClick(1_500))
+        assertEquals(EmergencyAction.Call112, useCase.registerClick(2_000))
     }
 
     @Test
     fun `resets counter after timeout`() {
         val useCase = EmergencyTriggerUseCase(tripleWindowMs = 2_000)
 
-        assertEquals(EmergencyAction.WARNING, useCase.registerClick(1_000))
-        assertEquals(EmergencyAction.WARNING, useCase.registerClick(4_000))
+        assertEquals(EmergencyAction.Warning(2), useCase.registerClick(1_000))
+        assertEquals(EmergencyAction.Warning(2), useCase.registerClick(4_000))
     }
 }

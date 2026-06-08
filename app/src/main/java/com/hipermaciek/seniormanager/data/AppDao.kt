@@ -20,8 +20,8 @@ interface AppDao {
     @Query("SELECT * FROM Medication WHERE profileId = :profileId")
     fun observeMedications(profileId: String): Flow<List<Medication>>
 
-    @Query("SELECT * FROM Medication ORDER BY startDate LIMIT 1")
-    suspend fun getNearestMedication(): Medication?
+    @Query("SELECT * FROM Medication ORDER BY startDate DESC LIMIT 1")
+    suspend fun getMostRecentMedication(): Medication?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertHealthEntry(entry: HealthEntry)

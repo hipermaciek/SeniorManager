@@ -9,7 +9,7 @@ class SeniorRepository(private val dao: AppDao) {
     suspend fun upsertProfile(profile: SeniorProfile) = dao.upsertProfile(profile)
     suspend fun upsertMedication(medication: Medication) = dao.upsertMedication(medication)
     suspend fun upsertHealthEntry(entry: HealthEntry) = dao.upsertHealthEntry(entry)
-    suspend fun getNearestMedication(): Medication? = dao.getNearestMedication()
+    suspend fun getMostRecentMedication(): Medication? = dao.getMostRecentMedication()
     suspend fun getRecentHealthEntries(profileId: String, limit: Int): List<HealthEntry> =
         dao.getRecentHealthEntries(profileId, limit)
 

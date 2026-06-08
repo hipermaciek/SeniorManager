@@ -53,7 +53,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 timesPerDay = timesPerDay,
                 currentStock = stock,
                 totalQuantity = stock,
-                startDate = System.currentTimeMillis().toString(),
+                startDate = System.currentTimeMillis(),
                 barcode = barcode
             )
             medicationUseCase(medication)

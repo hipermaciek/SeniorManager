@@ -17,14 +17,14 @@ class EmergencyTriggerUseCase(
         return if (clickCounter >= 3) {
             clickCounter = 0
             firstClickTimestamp = 0L
-            EmergencyAction.CALL_112
+            EmergencyAction.Call112
         } else {
-            EmergencyAction.WARNING
+            EmergencyAction.Warning(remainingClicks = 3 - clickCounter)
         }
     }
 }
 
-enum class EmergencyAction {
-    WARNING,
-    CALL_112
+sealed class EmergencyAction {
+    data class Warning(val remainingClicks: Int) : EmergencyAction()
+    data object Call112 : EmergencyAction()
 }
